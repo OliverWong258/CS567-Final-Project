@@ -5,7 +5,7 @@
 # Task docs: https://docs.ultralytics.com/tasks/detect
 
 # Modified by Chaoyi Wang
-# Add SPDConv in downsampling
+# Add RepConv before detection heads
 
 # Parameters
 nc: 80 # number of classes
@@ -44,12 +44,18 @@ head:
   - [[-1, 4], 1, Concat, [1]] # cat backbone P3
   - [-1, 2, C3k2, [256, True]] # 16 (P3/8-small)
 
-  - [-1, 1, SPDConv, [256]]
+  - [-1, 1, RepConv, [256, 3, 1]] # 17 <--- 新增：针对小目标的重参数化精炼
+
+  - [16, 1, Conv, [256, 3, 2]] # 18 (从16层引出，下采样回到P4尺度)
   - [[-1, 13], 1, Concat, [1]] # cat head P4
-  - [-1, 2, C3k2, [512, True]] # 19 (P4/16-medium)
+  - [-1, 2, C3k2, [512, True]] # 20 (P4/16-medium)
 
-  - [-1, 1, SPDConv, [512]]
+  - [20, 1, RepConv, [512, 3, 1]] # 21 (从20层引出，用于P4检测)
+
+  - [20, 1, Conv, [512, 3, 2]] # 22 (从20层引出，下采样回到P5尺度)
   - [[-1, 10], 1, Concat, [1]] # cat head P5
-  - [-1, 1, C3k2, [1024, True, 0.5, True]] # 22 (P5/32-large)
+  - [-1, 1, C3k2, [1024, True, 0.5, True]] # 24 (P5/32-large)
 
-  - [[16, 19, 22], 1, Detect, [nc]] # Detect(P3, P4, P5)
+  - [24, 1, RepConv, [1024, 3, 1]] # 25 (从24层引出，用于P5检测)
+
+  - [[17, 21, 25], 1, Detect, [nc]] # Detect(P3, P4, P5)

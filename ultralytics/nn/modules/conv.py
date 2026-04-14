@@ -689,7 +689,6 @@ class SPDConv(nn.Module):
     def __init__(self, c1, c2, k=3, s=1, p=None, g=1, act=True):
         super().__init__()
         self.spd = SPD()
-        # 注意：SPD 后通道数变为了 4 * c1
         self.conv = Conv(c1 * 4, c2, k=k, s=s, p=p, g=g, act=act)
 
     def forward(self, x):
