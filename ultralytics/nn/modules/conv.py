@@ -667,3 +667,30 @@ class Index(nn.Module):
             (torch.Tensor): Selected tensor.
         """
         return x[self.index]
+
+
+class SPD(nn.Module):
+    """理论基础来自 ECML PKDD 2022：No More Strided Convolutions or Pooling."""
+    def __init__(self, dimension=1):
+        super().__init__()
+        self.d = dimension
+
+    def forward(self, x):
+        # 将空间维度 (H, W) 转移到通道维度 (C)
+        return torch.cat([
+            x[..., ::2, ::2], 
+            x[..., 1::2, ::2], 
+            x[..., ::2, 1::2], 
+            x[..., 1::2, 1::2]
+        ], 1)
+
+class SPDConv(nn.Module):
+    """SPD 层后接一个不带步长的卷积层"""
+    def __init__(self, c1, c2, k=3, s=1, p=None, g=1, act=True):
+        super().__init__()
+        self.spd = SPD()
+        # 注意：SPD 后通道数变为了 4 * c1
+        self.conv = Conv(c1 * 4, c2, k=k, s=s, p=p, g=g, act=act)
+
+    def forward(self, x):
+        return self.conv(self.spd(x))
