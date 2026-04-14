@@ -1,0 +1,27 @@
+# 去掉P5层的YOLO26n (但是保留了P5层在主干部分对应的卷积层)
+
+EarlyStopping: Training stopped early as no improvement observed in last 50 epochs. Best results observed at epoch 106, best model saved as best.pt.
+To update EarlyStopping(patience=50) pass a new patience value, i.e. `patience=300` or use `patience=0` to disable EarlyStopping.
+
+156 epochs completed in 1.787 hours.
+Optimizer stripped from /root/autodl-tmp/CS567-Final-Project/scripts/VisDrone_YOLO26n/yolo26n_P2_exp3/weights/last.pt, 4.4MB
+Optimizer stripped from /root/autodl-tmp/CS567-Final-Project/scripts/VisDrone_YOLO26n/yolo26n_P2_exp3/weights/best.pt, 4.4MB
+
+Validating /root/autodl-tmp/CS567-Final-Project/scripts/VisDrone_YOLO26n/yolo26n_P2_exp3/weights/best.pt...
+YOLO26n-p2-v3 summary (fused): 127 layers, 1,955,030 parameters, 0 gradients, 9.8 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 6/6 1.8s/it 10.6s
+                   all        548      38759      0.475      0.368      0.352      0.202
+            pedestrian        520       8844      0.485       0.41      0.401      0.177
+                people        482       5125      0.502      0.326      0.317      0.117
+               bicycle        364       1287      0.268      0.145      0.106     0.0434
+                   car        515      14064      0.667      0.799      0.785      0.533
+                   van        421       1975      0.477      0.394      0.376      0.261
+                 truck        266        750      0.492      0.301      0.308      0.202
+              tricycle        337       1045      0.401      0.257      0.223      0.118
+       awning-tricycle        220        532      0.305      0.147      0.103     0.0619
+                   bus        131        251      0.626      0.458      0.475      0.327
+                 motor        485       4886      0.527      0.442      0.431      0.184
+Speed: 0.2ms preprocess, 7.7ms inference, 0.0ms loss, 2.4ms postprocess per image
+Results saved to /root/autodl-tmp/CS567-Final-Project/scripts/VisDrone_YOLO26n/yolo26n_P2_exp3
+💡 Learn more at https://docs.ultralytics.com/modes/train
+VS Code: view Ultralytics VS Code Extension ⚡ at https://docs.ultralytics.com/integrations/vscode
