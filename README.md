@@ -1,6 +1,6 @@
-#This is the final project for CS567. 
+# This is the final project for CS567. 
 
-##Our work includes: 
+## Our work includes: 
 
 1. Compare YOLO11 and YOLO26's performance on VisDrone Det dataset. 
 2. Try to improve the performance of YOLO26 on VisDrone Det dataset by modifying the model's architecture.
