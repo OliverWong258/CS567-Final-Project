@@ -1,3 +1,5 @@
+# 在模型主干部分加入SPDConv的版本
+
 200 epochs completed in 1.306 hours.
 Optimizer stripped from /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_SPDConv_exp1/weights/last.pt, 8.3MB
 Optimizer stripped from /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_SPDConv_exp1/weights/best.pt, 8.3MB
