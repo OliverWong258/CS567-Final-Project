@@ -1,0 +1,24 @@
+# 原版YOLO26n训练结果
+
+200 epochs completed in 1.320 hours.
+Optimizer stripped from /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_5090_exp1/weights/last.pt, 5.4MB
+Optimizer stripped from /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_5090_exp1/weights/best.pt, 5.4MB
+
+Validating /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_5090_exp1/weights/best.pt...
+YOLO26n summary (fused): 122 layers, 2,376,786 parameters, 0 gradients, 5.2 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 3/3 1.5s/it 4.4s
+                   all        548      38759      0.432      0.334      0.331      0.187
+            pedestrian        520       8844      0.436      0.392      0.384      0.164
+                people        482       5125      0.455       0.28      0.288      0.106
+               bicycle        364       1287      0.235      0.111     0.0876     0.0358
+                   car        515      14064      0.618      0.755      0.751      0.508
+                   van        421       1975      0.423      0.374      0.346      0.236
+                 truck        266        750      0.485       0.26      0.269      0.165
+              tricycle        337       1045      0.345      0.231      0.221       0.12
+       awning-tricycle        220        532      0.302       0.12      0.125     0.0777
+                   bus        131        251      0.563      0.426      0.454      0.305
+                 motor        485       4886      0.461      0.395       0.38      0.157
+Speed: 0.0ms preprocess, 0.1ms inference, 0.0ms loss, 0.0ms postprocess per image
+Results saved to /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_5090_exp1
+💡 Learn more at https://docs.ultralytics.com/modes/train
+VS Code: view Ultralytics VS Code Extension ⚡ at https://docs.ultralytics.com/integrations/vscode

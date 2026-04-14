@@ -1,0 +1,22 @@
+200 epochs completed in 1.306 hours.
+Optimizer stripped from /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_SPDConv_exp1/weights/last.pt, 8.3MB
+Optimizer stripped from /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_SPDConv_exp1/weights/best.pt, 8.3MB
+
+Validating /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_SPDConv_exp1/weights/best.pt...
+YOLO26n-spd summary (fused): 126 layers, 3,828,306 parameters, 0 gradients, 9.4 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 3/3 1.4s/it 4.2s
+                   all        548      38759      0.435      0.331      0.325      0.186
+            pedestrian        520       8844      0.465      0.382       0.38      0.162
+                people        482       5125      0.455      0.283      0.296      0.111
+               bicycle        364       1287      0.255      0.128     0.0948     0.0386
+                   car        515      14064       0.62      0.763      0.758      0.516
+                   van        421       1975      0.453      0.364      0.349      0.241
+                 truck        266        750      0.461      0.245      0.247      0.163
+              tricycle        337       1045      0.328      0.214      0.198      0.101
+       awning-tricycle        220        532      0.298      0.102      0.108     0.0675
+                   bus        131        251      0.532       0.43      0.439      0.302
+                 motor        485       4886      0.477        0.4      0.376      0.159
+Speed: 0.0ms preprocess, 0.1ms inference, 0.0ms loss, 0.0ms postprocess per image
+Results saved to /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_SPDConv_exp1
+💡 Learn more at https://docs.ultralytics.com/modes/train
+VS Code: view Ultralytics VS Code Extension ⚡ at https://docs.ultralytics.com/integrations/vscode

@@ -1,0 +1,25 @@
+EarlyStopping: Training stopped early as no improvement observed in last 50 epochs. Best results observed at epoch 110, best model saved as best.pt.
+To update EarlyStopping(patience=50) pass a new patience value, i.e. `patience=300` or use `patience=0` to disable EarlyStopping.
+
+160 epochs completed in 1.033 hours.
+Optimizer stripped from /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_RepConv_exp3/weights/last.pt, 6.7MB
+Optimizer stripped from /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_RepConv_exp3/weights/best.pt, 6.7MB
+
+Validating /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_RepConv_exp3/weights/best.pt...
+YOLO26n-rep2 summary (fused): 124 layers, 2,966,866 parameters, 0 gradients, 5.7 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 3/3 1.4s/it 4.2s
+                   all        548      38759      0.424       0.33      0.326      0.183
+            pedestrian        520       8844      0.452       0.38      0.375      0.154
+                people        482       5125      0.421      0.276      0.276     0.0999
+               bicycle        364       1287      0.222     0.0917     0.0849     0.0346
+                   car        515      14064      0.627      0.754      0.752      0.504
+                   van        421       1975      0.475      0.334      0.341      0.232
+                 truck        266        750       0.47      0.265      0.274      0.164
+              tricycle        337       1045      0.332      0.224      0.198      0.105
+       awning-tricycle        220        532      0.224      0.133      0.107     0.0677
+                   bus        131        251      0.584      0.419      0.476      0.316
+                 motor        485       4886      0.431      0.424      0.376      0.153
+Speed: 0.0ms preprocess, 0.1ms inference, 0.0ms loss, 0.0ms postprocess per image
+Results saved to /root/autodl-tmp/VisDrone_YOLO26n/yolo26n_RepConv_exp3
+💡 Learn more at https://docs.ultralytics.com/modes/train
+VS Code: view Ultralytics VS Code Extension ⚡ at https://docs.ultralytics.com/integrations/vscode
