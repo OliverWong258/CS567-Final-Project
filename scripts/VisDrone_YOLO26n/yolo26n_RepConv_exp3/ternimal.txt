@@ -1,3 +1,5 @@
+# 在主干部分加入RepConv的YOLO26n
+
 EarlyStopping: Training stopped early as no improvement observed in last 50 epochs. Best results observed at epoch 110, best model saved as best.pt.
 To update EarlyStopping(patience=50) pass a new patience value, i.e. `patience=300` or use `patience=0` to disable EarlyStopping.
 
