@@ -5,6 +5,28 @@
 1. Compare YOLO11 and YOLO26's performance on VisDrone Det dataset. 
 2. Try to improve the performance of YOLO26 on VisDrone Det dataset by modifying the model's architecture.
 
+## To Train the Model:
+
+Simply run the python scripts under scripts folder, or use the following command line:
+
+yolo task=detect mode=train \
+  model=yolo26n.yaml \
+  pretrained=yolo26n.pt \
+  data=PathToYAMLDatasetFile \
+  epochs=200 \
+  patience=50 \
+  imgsz=640 \
+  batch=128 \
+  device=0,1 \
+  workers=4 \
+  optimizer=MuSGD \
+  amp=True \
+  project=PathToYourOutputFolder \
+  name=yolo26n_ex \
+  exist_ok=True \
+  save=True \
+  plots=True
+
 ## Below is the original README of Ultralytics:
 
 <div align="center">
