@@ -17,6 +17,20 @@ from ultralytics.utils.torch_utils import autocast
 from .metrics import bbox_iou, probiou
 from .tal import bbox2dist, rbox2dist
 
+def xyxy2xywh_nwd(x):
+    """将 xyxy 转换为 xywh 格式"""
+    return torch.cat([(x[..., :2] + x[..., 2:]) / 2, x[..., 2:] - x[..., :2]], -1)
+
+def calculate_nwd(pbox, tbox, constant=12.8):
+    """最准确的 NWD 计算逻辑"""
+    eps = 1e-7
+    # 计算中心点距离平方
+    center_dist = (pbox[..., 0] - tbox[..., 0]) ** 2 + (pbox[..., 1] - tbox[..., 1]) ** 2
+    # 计算宽高差值平方，并除以 4
+    wh_dist = ((pbox[..., 2] - tbox[..., 2]) ** 2 + (pbox[..., 3] - tbox[..., 3]) ** 2) / 4
+    # Wasserstein 距离
+    w2 = center_dist + wh_dist + eps
+    return torch.exp(-torch.sqrt(w2) / constant)
 
 class VarifocalLoss(nn.Module):
     """Varifocal loss by Zhang et al.
@@ -128,7 +142,24 @@ class BboxLoss(nn.Module):
     ) -> tuple[torch.Tensor, torch.Tensor]:
         """Compute IoU and DFL losses for bounding boxes."""
         weight = target_scores.sum(-1)[fg_mask].unsqueeze(-1)
+
+        # --- NWD 逻辑开始 ---
+        # pbox = pred_bboxes[fg_mask]
+        # tbox = target_bboxes[fg_mask]
+
+        # 1. 计算原始 CIoU
         iou = bbox_iou(pred_bboxes[fg_mask], target_bboxes[fg_mask], xywh=False, CIoU=True)
+
+        # 2. 计算 NWD
+        # pbox_xywh = xyxy2xywh_nwd(pbox)
+        # tbox_xywh = xyxy2xywh_nwd(tbox)
+        # nwd = calculate_nwd(pbox_xywh, tbox_xywh, constant=12.8) # 12.8 是 VisDrone 推荐值
+
+        # 3. 混合损失 (alpha 为超参数)
+        # alpha = 0.5  # 建议 alpha 范围 [0.5, 0.7]
+        # mixed_iou = alpha * iou + (1.0 - alpha) * nwd.unsqueeze(-1)
+
+        # 4. 计算 Box Loss
         loss_iou = ((1.0 - iou) * weight).sum() / target_scores_sum
 
         # DFL loss
